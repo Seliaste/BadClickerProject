@@ -3,3 +3,15 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+
+[node name="mainPanel" type="Control" parent="."]
+margin_left = -640.0
+margin_top = -356.636
+margin_right = 640.0
+margin_bottom = 363.364
+__meta__ = {
+"_edit_use_anchors_": false
+}

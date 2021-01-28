@@ -17,7 +17,7 @@ func _ready():
 
 
 func _on_Button_button_down():
-	scene
+	get_tree().change_scene("res://gameScene.tscn")
 
 
 func _on_Button2_button_down():
