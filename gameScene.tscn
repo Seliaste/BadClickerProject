@@ -1,13 +1,128 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://font/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
+[ext_resource path="res://music/wormhole.ogg" type="AudioStream" id=3]
+[ext_resource path="res://font/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://image/IMG_0326.jpg" type="Texture" id=5]
+[ext_resource path="res://font/ShareTechMono-Regular.ttf" type="DynamicFontData" id=6]
 
 [sub_resource type="DynamicFont" id=1]
-size = 38
-font_data = ExtResource( 1 )
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 27
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D"]
+
+[node name="IMG_0326" type="Sprite" parent="."]
+position = Vector2( 1.16296, 1.15546 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+
+[node name="mainPanel" type="Control" parent="."]
+margin_left = -640.0
+margin_top = -356.636
+margin_right = 640.0
+margin_bottom = 363.364
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="clickButton" type="Button" parent="mainPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -50.0
+margin_right = 100.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+text = "Click"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="buyContainer" type="VBoxContainer" parent="mainPanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = 25.0
+margin_right = -25.0
+margin_bottom = -25.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BuyButton" type="Button" parent="mainPanel/buyContainer"]
+margin_right = 275.0
+margin_bottom = 47.0
+custom_fonts/font = SubResource( 1 )
+text = "20$ = +1cps"
+
+[node name="BuyButton2" type="Button" parent="mainPanel/buyContainer"]
+margin_top = 51.0
+margin_right = 275.0
+margin_bottom = 98.0
+custom_fonts/font = SubResource( 2 )
+text = "200$ = +15cps"
+
+[node name="BuyButton3" type="Button" parent="mainPanel/buyContainer"]
+margin_top = 102.0
+margin_right = 275.0
+margin_bottom = 149.0
+custom_fonts/font = SubResource( 2 )
+text = "50$ = +cps click value"
+
+[node name="BuyButton4" type="Button" parent="mainPanel/buyContainer"]
+margin_top = 153.0
+margin_right = 275.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 2 )
+text = "75$ = +20% cps"
+
+[node name="OptionButton" type="OptionButton" parent="mainPanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -427.498
+margin_top = 25.0
+margin_right = -307.498
+margin_bottom = 59.0
+text = "x1"
+items = [ "x1", null, false, 1, null, "x5", null, false, 5, null, "x25", null, false, 25, null, "x100", null, false, 100, null ]
+selected = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelUpButton" type="Button" parent="mainPanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -300.0
+margin_top = -100.0
+margin_right = -25.0
+margin_bottom = -25.0
+custom_fonts/font = ExtResource( 1 )
+text = "Level up and reroll"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainPanel"]
+stream = ExtResource( 3 )
+volume_db = -80.0
+autoplay = true
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource( 2 )
@@ -20,17 +135,36 @@ margin_left = -616.216
 margin_top = -335.231
 margin_right = -454.216
 margin_bottom = -278.231
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 text = "MoneyLabel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="mainPanel" type="Control" parent="."]
-margin_left = -640.0
-margin_top = -356.636
-margin_right = 640.0
-margin_bottom = 363.364
+[node name="InfoLabel" type="Label" parent="Player/Camera2D"]
+margin_left = -617.476
+margin_top = -288.614
+margin_right = -455.476
+margin_bottom = -231.614
+custom_fonts/font = SubResource( 3 )
+text = "CPSlabel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="debugButton" type="Button" parent="."]
+margin_left = -598.718
+margin_top = 306.086
+margin_right = -481.718
+margin_bottom = 335.086
+text = "debugcheat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="mainPanel/clickButton" to="Player" method="_on_Button_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/BuyButton" to="Player" method="_on_BuyButton_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/BuyButton2" to="Player" method="_on_BuyButton2_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/BuyButton3" to="Player" method="_on_BuyButton3_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/BuyButton4" to="Player" method="_on_BuyButton4_pressed"]
+[connection signal="pressed" from="mainPanel/LevelUpButton" to="Player" method="_on_LevelUpButton_pressed"]
+[connection signal="pressed" from="debugButton" to="Player" method="_on_DebugButton_pressed"]

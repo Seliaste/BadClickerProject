@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://mainMenu/mainMenuScript.gd" type="Script" id=1]
+[ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://music/wormhole.ogg" type="AudioStream" id=3]
 
 [node name="Node2D" type="Node2D"]
 
@@ -17,10 +19,16 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="menuAnchor"]
-margin_left = 479.108
-margin_top = 116.152
-margin_right = 531.066
-margin_bottom = 130.152
+anchor_left = 0.502
+anchor_top = -0.099
+anchor_right = 0.502
+anchor_bottom = -0.099
+margin_left = -57.02
+margin_top = 159.4
+margin_right = 60.98
+margin_bottom = 216.4
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
 text = "CLICKER"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -35,6 +43,7 @@ margin_left = -100.0
 margin_top = -25.0
 margin_right = 100.0
 margin_bottom = 25.0
+custom_fonts/font = ExtResource( 2 )
 text = "PLAY"
 script = ExtResource( 1 )
 __meta__ = {
@@ -46,14 +55,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
+margin_left = -98.8108
 margin_top = 50.0
-margin_right = 100.0
-margin_bottom = 100.0
+margin_right = 101.189
+margin_bottom = 105.0
+custom_fonts/font = ExtResource( 2 )
 text = "QUIT"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -100, -25 )
+stream = ExtResource( 3 )
+volume_db = -80.0
+autoplay = true
 [connection signal="button_down" from="menuAnchor/Button" to="menuAnchor/Button" method="_on_Button_button_down"]
 [connection signal="button_down" from="menuAnchor/Button2" to="menuAnchor/Button2" method="_on_Button2_button_down"]
