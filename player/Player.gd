@@ -12,6 +12,19 @@ var moneyLabel = "-"
 const MAX_DIGITS: int = 10
 
 
+func save():
+	var save_dict = {
+		"filename" : get_filename(),
+		"parent" : get_parent().get_path(),
+		"money" : money,
+		"clickValue" : clickValue,
+		"rawcps" : rawcps,
+		"cpsMultiplier" : cpsMultiplier,
+		"level" : level
+	}
+	return save_dict
+
+
 func Upgrade(cost,type,amount):
 	var multiplier = get_node("../mainPanel/OptionButton").get_selected_id()
 	if cost*multiplier<=money:
@@ -54,9 +67,7 @@ func _process(delta):
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.scancode == KEY_ESCAPE:
-			var success = get_tree().change_scene("res://mainMenu/mainMenu.tscn")
-			if success != OK:
-				print("Failed to change scene")
+			get_node("Camera2D").set_position(Vector2(1280,0))
 	else: pass
 
 

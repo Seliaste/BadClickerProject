@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://font/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://image/IMG_0326.jpg" type="Texture" id=5]
 [ext_resource path="res://font/ShareTechMono-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://player/SavePannelScript.gd" type="Script" id=7]
+[ext_resource path="res://gameScene.gd" type="Script" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
@@ -15,15 +17,16 @@ font_data = ExtResource( 4 )
 size = 27
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 24
 font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="IMG_0326" type="Sprite" parent="."]
 position = Vector2( 1.16296, 1.15546 )
@@ -31,9 +34,9 @@ scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 5 )
 
 [node name="mainPanel" type="Control" parent="."]
-margin_left = -640.0
+margin_left = -645.339
 margin_top = -356.636
-margin_right = 640.0
+margin_right = 634.661
 margin_bottom = 363.364
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,7 +127,68 @@ stream = ExtResource( 3 )
 volume_db = -80.0
 autoplay = true
 
-[node name="Player" type="Node" parent="."]
+[node name="Button" type="Button" parent="mainPanel"]
+margin_right = 12.0
+margin_bottom = 20.0
+
+[node name="SavePannel" type="Control" parent="."]
+margin_left = 640.0
+margin_top = -356.636
+margin_right = 1920.0
+margin_bottom = 363.364
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="SavePannel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -160.0
+margin_right = 100.0
+margin_bottom = -60.0
+custom_fonts/font = ExtResource( 1 )
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="SavePannel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.63
+margin_top = -50.0
+margin_right = 100.0
+margin_bottom = 50.0
+custom_fonts/font = ExtResource( 1 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="SavePannel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = 60.0
+margin_right = 100.0
+margin_bottom = 160.0
+custom_fonts/font = ExtResource( 1 )
+text = "Return"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" type="Node" parent="." groups=[
+"Persist",
+]]
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -135,7 +199,7 @@ margin_left = -616.216
 margin_top = -335.231
 margin_right = -454.216
 margin_bottom = -278.231
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "MoneyLabel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -146,7 +210,7 @@ margin_left = -617.476
 margin_top = -288.614
 margin_right = -455.476
 margin_bottom = -231.614
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "CPSlabel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -167,4 +231,7 @@ __meta__ = {
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton3" to="Player" method="_on_BuyButton3_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton4" to="Player" method="_on_BuyButton4_pressed"]
 [connection signal="pressed" from="mainPanel/LevelUpButton" to="Player" method="_on_LevelUpButton_pressed"]
+[connection signal="pressed" from="SavePannel/Exit" to="SavePannel" method="_on_Exit_pressed"]
+[connection signal="pressed" from="SavePannel/Save" to="SavePannel" method="_on_Save_pressed"]
+[connection signal="pressed" from="SavePannel/Return" to="SavePannel" method="_on_Return_pressed"]
 [connection signal="pressed" from="debugButton" to="Player" method="_on_DebugButton_pressed"]
