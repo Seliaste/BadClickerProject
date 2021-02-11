@@ -24,15 +24,17 @@ func _ready():
 	# the object it represents.
 	save_game.open("user://savegame.save", File.READ)
 	while not save_game.eof_reached():
-		var current_line = parse_json(save_game.get_line())
+		var current_line = JSON.parse(save_game.get_line()).result
 		var player = get_node("Player")
-		print(player)
-		for i in current_line.keys():
-			print(i)
-			if i == "filename" or i == "parent":
-				continue
-			player.set(i, current_line[i])
-	save_game.close() # Replace with function body.
+		if current_line != null:
+			for i in current_line.keys():
+				if i == "filename" or i == "parent":
+					continue
+				print(i, current_line[i])
+				player.set(i, current_line[i])
+	save_game.close() 
+	
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
