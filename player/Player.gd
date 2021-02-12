@@ -9,6 +9,7 @@ var cpsMultiplier = 1
 var cpsLabel = 0
 var level = 1
 var moneyLabel = "-"
+var timePlayed = 0
 const MAX_DIGITS: int = 10
 
 
@@ -20,7 +21,8 @@ func save():
 		"clickValue" : clickValue,
 		"rawcps" : rawcps,
 		"cpsMultiplier" : cpsMultiplier,
-		"level" : level
+		"level" : level,
+		"timePlayed" : timePlayed
 	}
 	return save_dict
 
@@ -44,6 +46,7 @@ func Upgrade(cost,type,amount):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	timePlayed += delta
 	money += delta*rawcps*cpsMultiplier 
 	if money < 100000:
 		moneyLabel = str(round(money))
