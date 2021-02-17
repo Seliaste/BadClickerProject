@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://font/ShareTechMono-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://player/SavePannelScript.gd" type="Script" id=7]
 [ext_resource path="res://gameScene.gd" type="Script" id=8]
+[ext_resource path="res://player/buttonManagementScript.gd" type="Script" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
@@ -65,36 +66,54 @@ margin_left = -300.0
 margin_top = 25.0
 margin_right = -25.0
 margin_bottom = -25.0
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuyButton" type="Button" parent="mainPanel/buyContainer"]
+[node name="BuyButton1" type="Button" parent="mainPanel/buyContainer"]
 margin_right = 275.0
 margin_bottom = 47.0
 custom_fonts/font = SubResource( 1 )
-text = "20$ = +1cps"
+text = "button1"
 
 [node name="BuyButton2" type="Button" parent="mainPanel/buyContainer"]
 margin_top = 51.0
 margin_right = 275.0
 margin_bottom = 98.0
 custom_fonts/font = SubResource( 2 )
-text = "200$ = +15cps"
+text = "button2"
 
 [node name="BuyButton3" type="Button" parent="mainPanel/buyContainer"]
 margin_top = 102.0
 margin_right = 275.0
 margin_bottom = 149.0
 custom_fonts/font = SubResource( 2 )
-text = "50$ = +cps click value"
+text = "button3"
 
 [node name="BuyButton4" type="Button" parent="mainPanel/buyContainer"]
 margin_top = 153.0
 margin_right = 275.0
 margin_bottom = 200.0
 custom_fonts/font = SubResource( 2 )
-text = "75$ = +20% cps"
+text = "button4"
+
+[node name="Reroll" type="Button" parent="mainPanel/buyContainer"]
+margin_top = 204.0
+margin_right = 275.0
+margin_bottom = 251.0
+custom_fonts/font = SubResource( 2 )
+text = "25$ : Reroll"
+
+[node name="LevelUp" type="Button" parent="mainPanel/buyContainer"]
+margin_top = 255.0
+margin_right = 275.0
+margin_bottom = 302.0
+custom_fonts/font = SubResource( 2 )
+text = "50$ : Level Up"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="OptionButton" type="OptionButton" parent="mainPanel"]
 anchor_left = 1.0
@@ -109,18 +128,6 @@ selected = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="LevelUpButton" type="Button" parent="mainPanel"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -300.0
-margin_top = -100.0
-margin_right = -25.0
-margin_bottom = -25.0
-custom_fonts/font = ExtResource( 1 )
-text = "Level up and reroll"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainPanel"]
 stream = ExtResource( 3 )
@@ -226,11 +233,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="mainPanel/clickButton" to="Player" method="_on_Button_pressed"]
-[connection signal="pressed" from="mainPanel/buyContainer/BuyButton" to="Player" method="_on_BuyButton_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/BuyButton1" to="Player" method="_on_BuyButton_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton2" to="Player" method="_on_BuyButton2_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton3" to="Player" method="_on_BuyButton3_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton4" to="Player" method="_on_BuyButton4_pressed"]
-[connection signal="pressed" from="mainPanel/LevelUpButton" to="Player" method="_on_LevelUpButton_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/Reroll" to="mainPanel/buyContainer" method="_on_Reroll_pressed"]
+[connection signal="pressed" from="mainPanel/buyContainer/LevelUp" to="Player" method="_on_LevelUp_pressed"]
 [connection signal="pressed" from="SavePannel/Exit" to="SavePannel" method="_on_Exit_pressed"]
 [connection signal="pressed" from="SavePannel/Save" to="SavePannel" method="_on_Save_pressed"]
 [connection signal="pressed" from="SavePannel/Return" to="SavePannel" method="_on_Return_pressed"]

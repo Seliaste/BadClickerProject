@@ -11,8 +11,9 @@ var level = 1
 var moneyLabel = "-"
 var timePlayed = 0
 const MAX_DIGITS: int = 10
-
-
+var newLevelCost: int = 50
+const q = 1.2
+onready var buyContainer = get_node("/root/Node2D/mainPanel/buyContainer")
 func save():
 	var save_dict = {
 		"filename" : get_filename(),
@@ -36,7 +37,7 @@ func Upgrade(cost,type,amount):
 				rawcps+=amount*multiplier
 				return true
 			"cpsMultiplier":
-				cpsMultiplier+=amount*multiplier
+				cpsMultiplier+=amount/100*multiplier
 				return true
 			"clickValue":
 				clickValue+=amount*multiplier
@@ -79,23 +80,37 @@ func _on_Button_pressed():
 
 
 func _on_BuyButton_pressed():
-	Upgrade(20,"rawcps",1)
+	Upgrade(buyContainer.buttonParameters[0][0],buyContainer.buttonParameters[0][1],buyContainer.buttonParameters[0][2])
 
 func _on_BuyButton2_pressed():
-	Upgrade(200,"rawcps",15)
+	Upgrade(buyContainer.buttonParameters[1][0],buyContainer.buttonParameters[1][1],buyContainer.buttonParameters[1][2])
 	
 	
 func _on_BuyButton3_pressed():
-	Upgrade(50,"clickValue",rawcps)
+	Upgrade(buyContainer.buttonParameters[2][0],buyContainer.buttonParameters[2][1],buyContainer.buttonParameters[2][2])
 	
 	
 func _on_BuyButton4_pressed():
-	Upgrade(75,"cpsMultiplier",0.2)
+	Upgrade(buyContainer.buttonParameters[3][0],buyContainer.buttonParameters[3][1],buyContainer.buttonParameters[3][2])
 
 
-func _on_LevelUpButton_pressed():
-	pass # Replace with function body.
 
 
 func _on_DebugButton_pressed():
-	money += 10000000
+		money += 10000000
+
+
+func _on_LevelUp_pressed():
+	var multiplier = get_node("../mainPanel/OptionButton").get_selected_id()
+	var moneyToPay = 0
+	for _i in range(0,multiplier):
+		moneyToPay += newLevelCost
+		newLevelCost *= q
+	if moneyToPay <= money:
+		level += multiplier
+		money -= moneyToPay
+	else: 
+		for _i in range(0,multiplier):
+			newLevelCost/=q
+	get_node("/root/Node2D/mainPanel/buyContainer/LevelUp").text = str(newLevelCost)+"$ : Level Up"
+	get_node("/root/Node2D/mainPanel/buyContainer/Reroll").text = str(newLevelCost/2)+"$ : Reroll"
