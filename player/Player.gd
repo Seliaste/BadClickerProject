@@ -23,7 +23,8 @@ func save():
 		"rawcps" : rawcps,
 		"cpsMultiplier" : cpsMultiplier,
 		"level" : level,
-		"timePlayed" : timePlayed
+		"timePlayed" : timePlayed,
+		"newLevelCost" : newLevelCost
 	}
 	return save_dict
 
@@ -45,6 +46,7 @@ func Upgrade(cost,type,amount):
 			_: return false
 	else: return false
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timePlayed += delta
@@ -59,11 +61,11 @@ func _process(delta):
 	get_node("Camera2D/MoneyLabel").set_text("Money: " + moneyLabel +"$")
 	
 	var _cps=rawcps*cpsMultiplier
-	if _cps < 100000:
+	if _cps < 1000:
 		cpsLabel = str(round(_cps))
 	else: 
 		var _exp = str(_cps).split(".")[0].length() - 1
-		var _dec = "%10.3f" % _cps / pow(10,_exp)
+		var _dec = "%10.3f" % (_cps / pow(10,_exp))
 		cpsLabel = "%sE%s" % [ _dec, str(_exp)]
 
 	get_node("Camera2D/InfoLabel").set_text("CPS: " + cpsLabel+ "\nLevel: " + str(level) + "\nclick Value: " + str(clickValue))
@@ -80,6 +82,7 @@ func _on_Button_pressed():
 
 
 func _on_BuyButton_pressed():
+	# get_node("/root/Node2D/mainPanel/buyContainer/BuyButton1").set_visible("false")
 	Upgrade(buyContainer.buttonParameters[0][0],buyContainer.buttonParameters[0][1],buyContainer.buttonParameters[0][2])
 
 func _on_BuyButton2_pressed():

@@ -18,8 +18,11 @@ func _ready():
 		for i in current_line.keys():
 			if i == "filename" or i == "parent":
 				continue
-			print(i, current_line[i])
+			elif i == "newLevelCost":
+				get_node("/root/Node2D/mainPanel/buyContainer/LevelUp").text = str(current_line[i])+"$ : Level Up"
+				get_node("/root/Node2D/mainPanel/buyContainer/Reroll").text = str(current_line[i]/2)+"$ : Reroll"
 			player.set(i, current_line[i])
+			
 	var camera = get_node("Player/Camera2D")
 	camera.current=true
 	camera.set_position(Vector2(0	,0))
