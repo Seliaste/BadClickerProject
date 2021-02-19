@@ -69,6 +69,12 @@ func _process(delta):
 		cpsLabel = "%sE%s" % [ _dec, str(_exp)]
 
 	get_node("Camera2D/InfoLabel").set_text("CPS: " + cpsLabel+ "\nLevel: " + str(level) + "\nclick Value: " + str(clickValue))
+	var mousePos = get_viewport().get_mouse_position()
+	for node in get_node("/root/").get_children():
+		if node.get_global_rect().has_point(mousePos) and node.tooltip!=None :
+			pass
+
+
 
 func _unhandled_input(event):
 	if event is InputEventKey:
@@ -117,3 +123,9 @@ func _on_LevelUp_pressed():
 			newLevelCost/=q
 	get_node("/root/Node2D/mainPanel/buyContainer/LevelUp").text = str(newLevelCost)+"$ : Level Up"
 	get_node("/root/Node2D/mainPanel/buyContainer/Reroll").text = str(newLevelCost/2)+"$ : Reroll"
+
+func _on_UP_pressed():
+	get_node("Camera2D").set_position(Vector2(0,-720))
+
+func _on_Down_pressed():
+	get_node("Camera2D").set_position(Vector2(0,0))
