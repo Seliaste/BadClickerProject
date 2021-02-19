@@ -1,10 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://music/wormhole.ogg" type="AudioStream" id=3]
 [ext_resource path="res://font/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://image/IMG_0326.jpg" type="Texture" id=5]
 [ext_resource path="res://font/ShareTechMono-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://player/SavePannelScript.gd" type="Script" id=7]
 [ext_resource path="res://gameScene.gd" type="Script" id=8]
@@ -12,6 +11,7 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
+extra_spacing_char = 4
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -29,15 +29,208 @@ font_data = ExtResource( 4 )
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 8 )
 
-[node name="IMG_0326" type="Sprite" parent="."]
-position = Vector2( 1.16296, 1.15546 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 5 )
+[node name="UpgradesPanel" type="Control" parent="."]
+margin_left = -644.545
+margin_top = -1079.91
+margin_right = 635.455
+margin_bottom = -359.91
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AscendContainer" type="VBoxContainer" parent="UpgradesPanel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -200.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = 250.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AscendLabel" type="Label" parent="UpgradesPanel/AscendContainer"]
+margin_top = 54.0
+margin_right = 154.0
+margin_bottom = 95.0
+custom_fonts/font = SubResource( 1 )
+text = "ASCENTION"
+align = 1
+
+[node name="AscendButton" type="Button" parent="UpgradesPanel/AscendContainer"]
+margin_top = 99.0
+margin_right = 154.0
+margin_bottom = 146.0
+custom_fonts/font = SubResource( 2 )
+text = "Ascend : +# AP"
+
+[node name="SkillTreeContainer" type="VBoxContainer" parent="UpgradesPanel"]
+margin_right = 644.0
+margin_bottom = 718.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SkillTreeLabel" type="Label" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 254.0
+margin_right = 644.0
+margin_bottom = 295.0
+custom_fonts/font = SubResource( 2 )
+text = "SKILL TREE"
+align = 1
+
+[node name="Row0" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 299.0
+margin_right = 644.0
+margin_bottom = 319.0
+alignment = 1
+
+[node name="R0B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row0"]
+margin_left = 299.0
+margin_right = 320.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R0B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row0"]
+margin_left = 324.0
+margin_right = 345.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row1" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 323.0
+margin_right = 644.0
+margin_bottom = 343.0
+alignment = 1
+
+[node name="R1B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row1"]
+margin_left = 311.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row2" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 347.0
+margin_right = 644.0
+margin_bottom = 367.0
+alignment = 1
+
+[node name="R2B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
+margin_left = 286.0
+margin_right = 307.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R2B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
+margin_left = 311.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R2B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
+margin_left = 336.0
+margin_right = 357.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row3" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 371.0
+margin_right = 644.0
+margin_bottom = 391.0
+alignment = 1
+
+[node name="R3B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row3"]
+margin_left = 299.0
+margin_right = 320.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R3B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row3"]
+margin_left = 324.0
+margin_right = 345.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row4" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 395.0
+margin_right = 644.0
+margin_bottom = 415.0
+alignment = 1
+
+[node name="R4B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
+margin_left = 286.0
+margin_right = 307.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R4B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
+margin_left = 311.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R4B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
+margin_left = 336.0
+margin_right = 357.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row5" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 419.0
+margin_right = 644.0
+margin_bottom = 439.0
+alignment = 1
+
+[node name="R5B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
+margin_left = 286.0
+margin_right = 307.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R5B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
+margin_left = 311.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="R5B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
+margin_left = 336.0
+margin_right = 357.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Row6" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
+margin_top = 443.0
+margin_right = 644.0
+margin_bottom = 463.0
+alignment = 1
+
+[node name="R6B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row6"]
+margin_left = 311.0
+margin_right = 332.0
+margin_bottom = 20.0
+text = "A"
+
+[node name="Down" type="Button" parent="UpgradesPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -20.0
+margin_top = -40.0001
+margin_right = 25.0
+margin_bottom = -6.10352e-05
+text = "DWN"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="mainPanel" type="Control" parent="."]
-margin_left = -645.339
+margin_left = -645.0
 margin_top = -356.636
-margin_right = 634.661
+margin_right = 635.0
 margin_bottom = 363.364
 __meta__ = {
 "_edit_use_anchors_": false
@@ -134,9 +327,16 @@ stream = ExtResource( 3 )
 volume_db = -6.0
 autoplay = true
 
-[node name="Button" type="Button" parent="mainPanel"]
-margin_right = 12.0
-margin_bottom = 20.0
+[node name="UP" type="Button" parent="mainPanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 40.0
+text = "UP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SavePannel" type="Control" parent="."]
 margin_left = 640.0
@@ -232,6 +432,7 @@ text = "debugcheat"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="pressed" from="UpgradesPanel/Down" to="Player" method="_on_Down_pressed"]
 [connection signal="pressed" from="mainPanel/clickButton" to="Player" method="_on_Button_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton1" to="Player" method="_on_BuyButton_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton2" to="Player" method="_on_BuyButton2_pressed"]
@@ -239,6 +440,7 @@ __meta__ = {
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton4" to="Player" method="_on_BuyButton4_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/Reroll" to="mainPanel/buyContainer" method="_on_Reroll_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/LevelUp" to="Player" method="_on_LevelUp_pressed"]
+[connection signal="pressed" from="mainPanel/UP" to="Player" method="_on_UP_pressed"]
 [connection signal="pressed" from="SavePannel/Exit" to="SavePannel" method="_on_Exit_pressed"]
 [connection signal="pressed" from="SavePannel/Save" to="SavePannel" method="_on_Save_pressed"]
 [connection signal="pressed" from="SavePannel/Return" to="SavePannel" method="_on_Return_pressed"]
