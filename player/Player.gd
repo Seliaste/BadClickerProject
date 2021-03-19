@@ -12,8 +12,10 @@ var moneyLabel = "-"
 var timePlayed = 0
 const MAX_DIGITS: int = 10
 var newLevelCost: int = 50
+onready var tooltip = get_node("/root/Node2D/Tooltip")
 const q = 1.2
 onready var buyContainer = get_node("/root/Node2D/mainPanel/buyContainer")
+onready var monster = get_node("/root/Node2D/Monster")
 func save():
 	var save_dict = {
 		"filename" : get_filename(),
@@ -28,6 +30,16 @@ func save():
 	}
 	return save_dict
 
+
+func getallnodes(node):
+	var returnList = []
+	for N in node.get_children():
+		if N.get_child_count() > 0:
+			returnList+=getallnodes(N)
+		if N is Control:
+			returnList.append(N)
+		
+	return returnList
 
 func Upgrade(cost,type,amount):
 	var multiplier = get_node("../mainPanel/OptionButton").get_selected_id()
@@ -50,7 +62,7 @@ func Upgrade(cost,type,amount):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timePlayed += delta
-	money += delta*rawcps*cpsMultiplier 
+	monster.damage(delta*rawcps*cpsMultiplier) 
 	if money < 100000:
 		moneyLabel = str(round(money))
 	else: 
@@ -69,10 +81,16 @@ func _process(delta):
 		cpsLabel = "%sE%s" % [ _dec, str(_exp)]
 
 	get_node("Camera2D/InfoLabel").set_text("CPS: " + cpsLabel+ "\nLevel: " + str(level) + "\nclick Value: " + str(clickValue))
-	var mousePos = get_viewport().get_mouse_position()
-	for node in get_node("/root/").get_children():
-		if node.get_global_rect().has_point(mousePos) and node.tooltip!=None :
-			pass
+	var mousePos = get_node("/root/Node2D").get_global_mouse_position()
+	for node in getallnodes(get_node("/root/Node2D")):
+		if node.get_global_rect().has_point(mousePos) and node.hint_tooltip != "":
+			tooltip.visible = true
+			tooltip.text = node.hint_tooltip
+			tooltip.set_position(mousePos+get_node("/root/Node2D/Player/Camera2D").get_position())
+			break
+		else:
+			tooltip.visible = false
+			
 
 
 
@@ -84,8 +102,7 @@ func _unhandled_input(event):
 
 
 func _on_Button_pressed():
-	money += clickValue
-
+	monster.damage(clickValue, true)
 
 func _on_BuyButton_pressed():
 	# get_node("/root/Node2D/mainPanel/buyContainer/BuyButton1").set_visible("false")

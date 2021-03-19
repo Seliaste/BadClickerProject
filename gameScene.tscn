@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://music/wormhole.ogg" type="AudioStream" id=3]
 [ext_resource path="res://font/Oswald-VariableFont_wght.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Monster.gd" type="Script" id=5]
 [ext_resource path="res://font/ShareTechMono-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://player/SavePannelScript.gd" type="Script" id=7]
 [ext_resource path="res://gameScene.gd" type="Script" id=8]
@@ -18,6 +19,12 @@ font_data = ExtResource( 4 )
 size = 27
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 79
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
 [sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 6 )
@@ -26,14 +33,37 @@ font_data = ExtResource( 6 )
 size = 24
 font_data = ExtResource( 4 )
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 0.0784314, 0.0784314, 1 )
+border_width_left = 5
+border_width_top = 5
+border_color = Color( 0, 0, 0, 1 )
+border_blend = true
+corner_detail = 9
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.952941, 0.945098, 0.945098, 1 )
+border_color = Color( 0, 0, 0, 1 )
+shadow_color = Color( 0, 0, 0, 0.780392 )
+shadow_size = 2
+shadow_offset = Vector2( 2, 2 )
+
+[sub_resource type="DynamicFont" id=6]
+outline_size = 3
+font_data = ExtResource( 4 )
+
+[node name="Node2D" type="Control"]
 script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="UpgradesPanel" type="Control" parent="."]
 margin_left = -644.545
 margin_top = -1079.91
 margin_right = 635.455
 margin_bottom = -359.91
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -54,6 +84,7 @@ __meta__ = {
 margin_top = 54.0
 margin_right = 154.0
 margin_bottom = 95.0
+hint_tooltip = "aezeazaze"
 custom_fonts/font = SubResource( 1 )
 text = "ASCENTION"
 align = 1
@@ -77,6 +108,8 @@ __meta__ = {
 margin_top = 254.0
 margin_right = 644.0
 margin_bottom = 295.0
+mouse_filter = 1
+mouse_default_cursor_shape = 3
 custom_fonts/font = SubResource( 2 )
 text = "SKILL TREE"
 align = 1
@@ -91,12 +124,14 @@ alignment = 1
 margin_left = 299.0
 margin_right = 320.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R0B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row0"]
 margin_left = 324.0
 margin_right = 345.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row1" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -109,6 +144,7 @@ alignment = 1
 margin_left = 311.0
 margin_right = 332.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row2" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -121,18 +157,21 @@ alignment = 1
 margin_left = 286.0
 margin_right = 307.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R2B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
 margin_left = 311.0
 margin_right = 332.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R2B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
 margin_left = 336.0
 margin_right = 357.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row3" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -145,12 +184,14 @@ alignment = 1
 margin_left = 299.0
 margin_right = 320.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R3B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row3"]
 margin_left = 324.0
 margin_right = 345.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row4" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -163,18 +204,21 @@ alignment = 1
 margin_left = 286.0
 margin_right = 307.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R4B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
 margin_left = 311.0
 margin_right = 332.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R4B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
 margin_left = 336.0
 margin_right = 357.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row5" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -187,18 +231,21 @@ alignment = 1
 margin_left = 286.0
 margin_right = 307.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R5B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
 margin_left = 311.0
 margin_right = 332.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="R5B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
 margin_left = 336.0
 margin_right = 357.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Row6" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
@@ -211,6 +258,7 @@ alignment = 1
 margin_left = 311.0
 margin_right = 332.0
 margin_bottom = 20.0
+mouse_filter = 1
 text = "A"
 
 [node name="Down" type="Button" parent="UpgradesPanel"]
@@ -222,6 +270,7 @@ margin_left = -20.0
 margin_top = -40.0001
 margin_right = 25.0
 margin_bottom = -6.10352e-05
+mouse_filter = 1
 text = "DWN"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -229,24 +278,26 @@ __meta__ = {
 
 [node name="mainPanel" type="Control" parent="."]
 margin_left = -645.0
-margin_top = -356.636
+margin_top = -354.748
 margin_right = 635.0
-margin_bottom = 363.364
+margin_bottom = 365.252
+mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="clickButton" type="Button" parent="mainPanel"]
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 margin_left = -100.0
-margin_top = -50.0
+margin_top = -198.112
 margin_right = 100.0
-margin_bottom = 50.0
-custom_fonts/font = ExtResource( 1 )
-text = "Click"
+margin_bottom = -74.1123
+mouse_filter = 1
+custom_fonts/font = SubResource( 7 )
+text = "SLASH"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -267,13 +318,21 @@ __meta__ = {
 [node name="BuyButton1" type="Button" parent="mainPanel/buyContainer"]
 margin_right = 275.0
 margin_bottom = 47.0
-custom_fonts/font = SubResource( 1 )
+hint_tooltip = "azeaze"
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
 text = "button1"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="BuyButton2" type="Button" parent="mainPanel/buyContainer"]
 margin_top = 51.0
 margin_right = 275.0
 margin_bottom = 98.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
 text = "button2"
 
@@ -281,6 +340,8 @@ text = "button2"
 margin_top = 102.0
 margin_right = 275.0
 margin_bottom = 149.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
 text = "button3"
 
@@ -288,6 +349,8 @@ text = "button3"
 margin_top = 153.0
 margin_right = 275.0
 margin_bottom = 200.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
 text = "button4"
 
@@ -295,6 +358,8 @@ text = "button4"
 margin_top = 204.0
 margin_right = 275.0
 margin_bottom = 251.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
 text = "25$ : Reroll"
 
@@ -302,6 +367,8 @@ text = "25$ : Reroll"
 margin_top = 255.0
 margin_right = 275.0
 margin_bottom = 302.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
 text = "50$ : Level Up"
 __meta__ = {
@@ -315,6 +382,8 @@ margin_left = -427.498
 margin_top = 25.0
 margin_right = -307.498
 margin_bottom = 59.0
+mouse_filter = 1
+mouse_default_cursor_shape = 2
 text = "x1"
 items = [ "x1", null, false, 1, null, "x5", null, false, 5, null, "x25", null, false, 25, null, "x100", null, false, 100, null ]
 selected = 0
@@ -333,6 +402,7 @@ anchor_right = 0.5
 margin_left = -20.0
 margin_right = 20.0
 margin_bottom = 40.0
+mouse_filter = 1
 text = "UP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -343,6 +413,7 @@ margin_left = 640.0
 margin_top = -356.636
 margin_right = 1920.0
 margin_bottom = 363.364
+mouse_filter = 1
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -406,6 +477,8 @@ margin_left = -616.216
 margin_top = -335.231
 margin_right = -454.216
 margin_bottom = -278.231
+hint_tooltip = "Your money"
+mouse_filter = 0
 custom_fonts/font = SubResource( 3 )
 text = "MoneyLabel"
 __meta__ = {
@@ -428,7 +501,59 @@ margin_left = -598.718
 margin_top = 306.086
 margin_right = -481.718
 margin_bottom = 335.086
+hint_tooltip = "DEBUG ONLY"
+mouse_filter = 1
 text = "debugcheat"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Monster" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Monster"]
+margin_left = -200.0
+margin_top = -300.0
+margin_right = 200.0
+margin_bottom = 150.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Log" type="RichTextLabel" parent="Monster/VBoxContainer"]
+margin_top = 16.0
+margin_right = 400.0
+margin_bottom = 416.0
+rect_min_size = Vector2( 400, 400 )
+mouse_filter = 1
+scroll_active = false
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Monster/VBoxContainer"]
+margin_top = 420.0
+margin_right = 400.0
+margin_bottom = 434.0
+hint_tooltip = "Life: "
+mouse_filter = 1
+mouse_default_cursor_shape = 3
+custom_styles/fg = SubResource( 8 )
+value = 100.0
+
+[node name="Tooltip" type="Label" parent="."]
+margin_left = -200.0
+margin_top = 122.0
+margin_right = -200.0
+margin_bottom = 147.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_styles/normal = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
