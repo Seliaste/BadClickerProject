@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://player/SavePannelScript.gd" type="Script" id=7]
 [ext_resource path="res://gameScene.gd" type="Script" id=8]
 [ext_resource path="res://player/buttonManagementScript.gd" type="Script" id=9]
+[ext_resource path="res://mainMenu/styleLifeBar.tres" type="StyleBox" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
@@ -19,40 +20,42 @@ font_data = ExtResource( 4 )
 size = 27
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=3]
 size = 79
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 24
 font_data = ExtResource( 4 )
 
-[sub_resource type="StyleBoxFlat" id=8]
-bg_color = Color( 1, 0.0784314, 0.0784314, 1 )
-border_width_left = 5
-border_width_top = 5
-border_color = Color( 0, 0, 0, 1 )
-border_blend = true
-corner_detail = 9
-
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.952941, 0.945098, 0.945098, 1 )
 border_color = Color( 0, 0, 0, 1 )
 shadow_color = Color( 0, 0, 0, 0.780392 )
 shadow_size = 2
 shadow_offset = Vector2( 2, 2 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=7]
 outline_size = 3
 font_data = ExtResource( 4 )
 
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="DynamicFont" id=9]
+size = 17
+font_data = ExtResource( 4 )
+
 [node name="Node2D" type="Control"]
+margin_left = 639.584
+margin_top = 360.008
+margin_right = 639.584
+margin_bottom = 360.008
 script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -71,10 +74,10 @@ __meta__ = {
 [node name="AscendContainer" type="VBoxContainer" parent="UpgradesPanel"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -200.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = 250.0
+margin_left = -424.061
+margin_top = 66.9897
+margin_right = -82.061
+margin_bottom = 266.99
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -82,19 +85,31 @@ __meta__ = {
 
 [node name="AscendLabel" type="Label" parent="UpgradesPanel/AscendContainer"]
 margin_top = 54.0
-margin_right = 154.0
+margin_right = 342.0
 margin_bottom = 95.0
-hint_tooltip = "aezeazaze"
 custom_fonts/font = SubResource( 1 )
 text = "ASCENTION"
 align = 1
 
 [node name="AscendButton" type="Button" parent="UpgradesPanel/AscendContainer"]
 margin_top = 99.0
-margin_right = 154.0
+margin_right = 342.0
 margin_bottom = 146.0
 custom_fonts/font = SubResource( 2 )
 text = "Ascend : +# AP"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="UpgradesPanel/AscendContainer"]
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="UpgradesPanel/AscendContainer/CanvasLayer"]
+margin_left = 486.288
+margin_top = -424.554
+margin_right = 829.288
+margin_bottom = -349.554
+dialog_text = "Are you sure you want to ascend? This will reset everything and permanently boost your stats"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SkillTreeContainer" type="VBoxContainer" parent="UpgradesPanel"]
 margin_right = 644.0
@@ -277,9 +292,9 @@ __meta__ = {
 }
 
 [node name="mainPanel" type="Control" parent="."]
-margin_left = -645.0
+margin_left = -645.455
 margin_top = -354.748
-margin_right = 635.0
+margin_right = 634.545
 margin_bottom = 365.252
 mouse_filter = 1
 __meta__ = {
@@ -296,7 +311,7 @@ margin_top = -198.112
 margin_right = 100.0
 margin_bottom = -74.1123
 mouse_filter = 1
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 3 )
 text = "SLASH"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -318,7 +333,6 @@ __meta__ = {
 [node name="BuyButton1" type="Button" parent="mainPanel/buyContainer"]
 margin_right = 275.0
 margin_bottom = 47.0
-hint_tooltip = "azeaze"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 custom_fonts/font = SubResource( 2 )
@@ -382,6 +396,7 @@ margin_left = -427.498
 margin_top = 25.0
 margin_right = -307.498
 margin_bottom = 59.0
+hint_tooltip = "The multiplier selector"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 text = "x1"
@@ -393,7 +408,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="mainPanel"]
 stream = ExtResource( 3 )
-volume_db = -6.0
+volume_db = -80.0
 autoplay = true
 
 [node name="UP" type="Button" parent="mainPanel"]
@@ -470,6 +485,7 @@ __meta__ = {
 script = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2( 640, 360 )
 current = true
 
 [node name="MoneyLabel" type="Label" parent="Player/Camera2D"]
@@ -479,7 +495,7 @@ margin_right = -454.216
 margin_bottom = -278.231
 hint_tooltip = "Your money"
 mouse_filter = 0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "MoneyLabel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -490,7 +506,7 @@ margin_left = -617.476
 margin_top = -288.614
 margin_right = -455.476
 margin_bottom = -231.614
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "CPSlabel"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -508,23 +524,42 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+follow_viewport_enable = true
+
+[node name="Tooltip" type="Label" parent="CanvasLayer"]
+margin_left = 318.0
+margin_top = -434.0
+margin_right = 350.0
+margin_bottom = -409.0
+mouse_filter = 1
+size_flags_horizontal = 3
+size_flags_vertical = 2
+custom_styles/normal = SubResource( 6 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "aezzz"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Monster" type="Node" parent="."]
 script = ExtResource( 5 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Monster"]
-margin_left = -200.0
-margin_top = -300.0
-margin_right = 200.0
-margin_bottom = 150.0
+margin_left = 439.584
+margin_top = 60.0083
+margin_right = 839.584
+margin_bottom = 514.008
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Log" type="RichTextLabel" parent="Monster/VBoxContainer"]
-margin_top = 16.0
 margin_right = 400.0
-margin_bottom = 416.0
+margin_bottom = 400.0
 rect_min_size = Vector2( 400, 400 )
 mouse_filter = 1
 scroll_active = false
@@ -534,29 +569,26 @@ __meta__ = {
 }
 
 [node name="ProgressBar" type="ProgressBar" parent="Monster/VBoxContainer"]
-margin_top = 420.0
+margin_top = 404.0
 margin_right = 400.0
-margin_bottom = 434.0
+margin_bottom = 430.0
 hint_tooltip = "Life: "
 mouse_filter = 1
 mouse_default_cursor_shape = 3
-custom_styles/fg = SubResource( 8 )
+custom_styles/fg = ExtResource( 10 )
+custom_styles/bg = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
 value = 100.0
 
-[node name="Tooltip" type="Label" parent="."]
-margin_left = -200.0
-margin_top = 122.0
-margin_right = -200.0
-margin_bottom = 147.0
-mouse_filter = 1
-size_flags_horizontal = 3
-size_flags_vertical = 2
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="OptionButton" type="OptionButton" parent="Monster/VBoxContainer"]
+margin_top = 434.0
+margin_right = 400.0
+margin_bottom = 454.0
+text = "1 Monster"
+items = [ "1 Monster", null, false, 1, null, "5 Monsters", null, false, 5, null, "25 Monsters", null, false, 25, null, "500 Monsters", null, false, 500, null ]
+selected = 0
+[connection signal="pressed" from="UpgradesPanel/AscendContainer/AscendButton" to="Player" method="_on_AscendButton_pressed"]
+[connection signal="confirmed" from="UpgradesPanel/AscendContainer/CanvasLayer/ConfirmationDialog" to="Player" method="_on_ConfirmationDialog_confirmed"]
 [connection signal="pressed" from="UpgradesPanel/Down" to="Player" method="_on_Down_pressed"]
 [connection signal="pressed" from="mainPanel/clickButton" to="Player" method="_on_Button_pressed"]
 [connection signal="pressed" from="mainPanel/buyContainer/BuyButton1" to="Player" method="_on_BuyButton_pressed"]
@@ -570,3 +602,4 @@ __meta__ = {
 [connection signal="pressed" from="SavePannel/Save" to="SavePannel" method="_on_Save_pressed"]
 [connection signal="pressed" from="SavePannel/Return" to="SavePannel" method="_on_Return_pressed"]
 [connection signal="pressed" from="debugButton" to="Player" method="_on_DebugButton_pressed"]
+[connection signal="item_selected" from="Monster/VBoxContainer/OptionButton" to="Monster" method="_on_OptionButton_item_selected"]

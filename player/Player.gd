@@ -10,12 +10,16 @@ var cpsLabel = 0
 var level = 1
 var moneyLabel = "-"
 var timePlayed = 0
+var newpowr = 1
+var currpowr = 1
+var killed = 0
 const MAX_DIGITS: int = 10
 var newLevelCost: int = 50
-onready var tooltip = get_node("/root/Node2D/Tooltip")
+onready var tooltip = get_node("/root/Node2D/CanvasLayer/Tooltip")
 const q = 1.2
 onready var buyContainer = get_node("/root/Node2D/mainPanel/buyContainer")
 onready var monster = get_node("/root/Node2D/Monster")
+onready var ascentionbtn = get_node("/root/Node2D/UpgradesPanel/AscendContainer/AscendButton")
 func save():
 	var save_dict = {
 		"filename" : get_filename(),
@@ -62,7 +66,7 @@ func Upgrade(cost,type,amount):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timePlayed += delta
-	monster.damage(delta*rawcps*cpsMultiplier) 
+	monster.damage(delta*pow(rawcps*cpsMultiplier, currpowr)) 
 	if money < 100000:
 		moneyLabel = str(round(money))
 	else: 
@@ -72,7 +76,7 @@ func _process(delta):
 	
 	get_node("Camera2D/MoneyLabel").set_text("Money: " + moneyLabel +"$")
 	
-	var _cps=rawcps*cpsMultiplier
+	var _cps=pow(rawcps*cpsMultiplier, currpowr)
 	if _cps < 1000:
 		cpsLabel = str(round(_cps))
 	else: 
@@ -86,18 +90,21 @@ func _process(delta):
 		if node.get_global_rect().has_point(mousePos) and node.hint_tooltip != "":
 			tooltip.visible = true
 			tooltip.text = node.hint_tooltip
-			tooltip.set_position(mousePos+get_node("/root/Node2D/Player/Camera2D").get_position())
+			tooltip.set_global_position(mousePos+Vector2(20,5))
 			break
 		else:
 			tooltip.visible = false
-			
+
+	newpowr = stepify(currpowr + (timePlayed/1000)  + (killed / 1000) + (level / 100), 0.01)
+	ascentionbtn.text = "Ascend : +%s Power" % str(newpowr-currpowr)
+	ascentionbtn.hint_tooltip = "You currently have %s Power" % str(currpowr)
 
 
 
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.scancode == KEY_ESCAPE:
-			get_node("Camera2D").set_position(Vector2(1280,0))
+			get_node("Camera2D").set_position(Vector2(1280+640,360))
 	else: pass
 
 
@@ -140,9 +147,29 @@ func _on_LevelUp_pressed():
 			newLevelCost/=q
 	get_node("/root/Node2D/mainPanel/buyContainer/LevelUp").text = str(newLevelCost)+"$ : Level Up"
 	get_node("/root/Node2D/mainPanel/buyContainer/Reroll").text = str(newLevelCost/2)+"$ : Reroll"
+	get_node("/root/Node2D/mainPanel/buyContainer").rerollCost = newLevelCost/2
 
 func _on_UP_pressed():
-	get_node("Camera2D").set_position(Vector2(0,-720))
+	get_node("Camera2D").set_position(Vector2(640,-360))
+	
 
 func _on_Down_pressed():
-	get_node("Camera2D").set_position(Vector2(0,0))
+	get_node("Camera2D").set_position(Vector2(640,360))
+
+func _on_AscendButton_pressed():
+	get_node("/root/Node2D/UpgradesPanel/AscendContainer/CanvasLayer/ConfirmationDialog").popup_centered()
+
+func _on_ConfirmationDialog_confirmed():
+	currpowr = newpowr 
+	money = 0
+	clickValue = 1
+	rawcps = 0
+	cpsMultiplier = 1
+	cpsLabel = 0
+	level = 1
+	timePlayed = 0
+	killed = 0
+	buyContainer.Reroll()
+	get_node("Camera2D").set_position(Vector2(640,360))
+	monster.spawnBoss()
+	get_node("/root/Node2D/Monster/VBoxContainer/OptionButton").selected = 0

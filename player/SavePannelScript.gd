@@ -25,4 +25,4 @@ func _on_Save_pressed():
 
 
 func _on_Return_pressed():
-	get_parent().get_node("Player/Camera2D").set_position(Vector2(0	,0))
+	get_parent().get_node("Player/Camera2D").set_position(Vector2(640	,360))
