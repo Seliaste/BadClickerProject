@@ -5,7 +5,7 @@ extends Container
 # var a = 2
 # var b = "text"
 const buttonTypes = ["cpsMultiplier","rawcps","clickValue"]
-const messages = {"cpsMultiplier": "% CPS", "rawcps": " CPS", "clickValue": " CV"}
+const messages = {"cpsMultiplier": "% DPS", "rawcps": " DPS", "clickValue": " SD"}
 const baseVals = {"cpsMultiplier":2 , "rawcps": 4 , "clickValue": 1}
 const rarityColors = [Color(0, 0, 0),Color("#35db56"),Color("#1888de"),Color("#8818de"),Color("#ff6a00")]
 var buttonParameters = [[],[],[],[],]

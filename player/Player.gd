@@ -4,6 +4,8 @@ extends Node
 # Declare member variables here. Examples:
 var money : float = 0
 var clickValue = 1
+var rewardmp = 1
+var multimp = 1
 var rawcps = 0
 var cpsMultiplier = 1
 var cpsLabel = 0
@@ -66,7 +68,7 @@ func Upgrade(cost,type,amount):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	timePlayed += delta
-	monster.damage(delta*pow(rawcps*cpsMultiplier, currpowr)) 
+	monster.damage(delta*rawcps*(cpsMultiplier*multimp)*currpowr) 
 	if money < 100000:
 		moneyLabel = str(round(money))
 	else: 
@@ -76,7 +78,7 @@ func _process(delta):
 	
 	get_node("Camera2D/MoneyLabel").set_text("Money: " + moneyLabel +"$")
 	
-	var _cps=pow(rawcps*cpsMultiplier, currpowr)
+	var _cps=rawcps*cpsMultiplier*currpowr*multimp
 	if _cps < 1000:
 		cpsLabel = str(round(_cps))
 	else: 
@@ -84,7 +86,7 @@ func _process(delta):
 		var _dec = "%10.3f" % (_cps / pow(10,_exp))
 		cpsLabel = "%sE%s" % [ _dec, str(_exp)]
 
-	get_node("Camera2D/InfoLabel").set_text("CPS: " + cpsLabel+ "\nLevel: " + str(level) + "\nclick Value: " + str(clickValue))
+	get_node("Camera2D/InfoLabel").set_text("DPS: " + cpsLabel+ "\nLevel: " + str(level) + "\nSlash Damage: " + str(clickValue))
 	var mousePos = get_node("/root/Node2D").get_global_mouse_position()
 	for node in getallnodes(get_node("/root/Node2D")):
 		if node.get_global_rect().has_point(mousePos) and node.hint_tooltip != "":
@@ -94,8 +96,9 @@ func _process(delta):
 			break
 		else:
 			tooltip.visible = false
+			tooltip.rect_size = Vector2(1,1)
 
-	newpowr = stepify(currpowr + (timePlayed/1000)  + (killed / 1000) + (level / 100), 0.01)
+	newpowr = stepify(currpowr + (timePlayed/1000)  + (killed*level / 1000) + (level / 10), 0.01)
 	ascentionbtn.text = "Ascend : +%s Power" % str(newpowr-currpowr)
 	ascentionbtn.hint_tooltip = "You currently have %s Power" % str(currpowr)
 
@@ -171,5 +174,10 @@ func _on_ConfirmationDialog_confirmed():
 	killed = 0
 	buyContainer.Reroll()
 	get_node("Camera2D").set_position(Vector2(640,360))
-	monster.spawnBoss()
 	get_node("/root/Node2D/Monster/VBoxContainer/OptionButton").selected = 0
+	monster.monsterNum = get_node("/root/Node2D/Monster/VBoxContainer/OptionButton").get_selected_id()
+	monster.spawnBoss()
+	newLevelCost = 50
+	get_node("/root/Node2D/mainPanel/buyContainer/LevelUp").text = str(newLevelCost)+"$ : Level Up"
+	get_node("/root/Node2D/mainPanel/buyContainer/Reroll").text = str(newLevelCost/2)+"$ : Reroll"
+	get_node("/root/Node2D/mainPanel/buyContainer").rerollCost = newLevelCost/2

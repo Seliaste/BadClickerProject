@@ -29,7 +29,7 @@ func damage(damageAmount: float, showdmg = false):
 			logs.text += "Damage: " + str(damageAmount) + "\n"
 		if life <= 0:
 			var remainingdmg = -life
-			var earnedMoney = rng.randi_range(2,10) * player.level * currmonsterNum
+			var earnedMoney = rng.randi_range(2,10) * player.level * currmonsterNum * player.rewardmp
 			var deathMessage = ""
 			match currmonsterNum:
 				1:
@@ -60,3 +60,4 @@ func refreshLife():
 
 func _on_OptionButton_item_selected(_index: int):
 	monsterNum = get_node("VBoxContainer/OptionButton").get_selected_id()
+	spawnBoss()

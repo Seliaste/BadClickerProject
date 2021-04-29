@@ -88,6 +88,17 @@ position = Vector2( -100, -25 )
 stream = ExtResource( 3 )
 volume_db = -80.0
 autoplay = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = -589.224
+margin_top = 319.388
+margin_right = -501.224
+margin_bottom = 336.388
+text = "version 1.1"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="button_down" from="menuAnchor/Button" to="menuAnchor/Button" method="_on_Button_button_down"]
 [connection signal="ready" from="menuAnchor/Button" to="menuAnchor/Button" method="_on_Button_ready"]
 [connection signal="button_down" from="menuAnchor/Button3" to="menuAnchor/Button" method="_on_Button3_button_down"]
