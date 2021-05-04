@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://font/labelFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://player/buttonManagementScript.gd" type="Script" id=9]
 [ext_resource path="res://mainMenu/styleLifeBar.tres" type="StyleBox" id=10]
 [ext_resource path="res://SkillTree.gd" type="Script" id=11]
+[ext_resource path="res://image/IMG_0338.jpg" type="Texture" id=12]
+[ext_resource path="res://image/IMG_0308.jpg" type="Texture" id=13]
+[ext_resource path="res://image/IMG_0326.jpg" type="Texture" id=14]
+[ext_resource path="res://theme.tres" type="Theme" id=15]
 
 [sub_resource type="DynamicFont" id=1]
 size = 27
@@ -63,11 +67,22 @@ __meta__ = {
 }
 
 [node name="UpgradesPanel" type="Control" parent="."]
-margin_left = -644.545
-margin_top = -1079.91
-margin_right = 635.455
-margin_bottom = -359.91
+margin_left = -640.0
+margin_top = -1080.0
+margin_right = 640.0
+margin_bottom = -360.0
 mouse_filter = 1
+theme = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UpgradesPanel"]
+margin_right = 1280.0
+margin_bottom = 720.0
+theme = ExtResource( 15 )
+texture = ExtResource( 12 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -79,25 +94,28 @@ margin_left = -424.061
 margin_top = 66.9897
 margin_right = -82.061
 margin_bottom = 266.99
+theme = ExtResource( 15 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AscendLabel" type="Label" parent="UpgradesPanel/AscendContainer"]
-margin_top = 54.0
+margin_top = 55.0
 margin_right = 342.0
-margin_bottom = 95.0
+margin_bottom = 96.0
 hint_tooltip = "Ascention gives power which multiplies your DPS and your Slash Damage"
 mouse_filter = 1
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 1 )
 text = "ASCENTION"
 align = 1
 
 [node name="AscendButton" type="Button" parent="UpgradesPanel/AscendContainer"]
-margin_top = 99.0
+margin_top = 100.0
 margin_right = 342.0
-margin_bottom = 146.0
+margin_bottom = 145.0
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "Ascend : +# Power"
 
@@ -108,6 +126,7 @@ margin_left = 486.288
 margin_top = -424.554
 margin_right = 829.288
 margin_bottom = -349.554
+theme = ExtResource( 15 )
 dialog_text = "Are you sure you want to ascend? This will reset everything and permanently boost your stats"
 dialog_autowrap = true
 __meta__ = {
@@ -117,6 +136,7 @@ __meta__ = {
 [node name="SkillTreeContainer" type="VBoxContainer" parent="UpgradesPanel"]
 margin_right = 644.0
 margin_bottom = 718.0
+theme = ExtResource( 15 )
 alignment = 1
 script = ExtResource( 11 )
 __meta__ = {
@@ -124,181 +144,198 @@ __meta__ = {
 }
 
 [node name="SkillTreeLabel" type="Label" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 254.0
+margin_top = 139.0
 margin_right = 644.0
-margin_bottom = 295.0
+margin_bottom = 180.0
 mouse_filter = 1
 mouse_default_cursor_shape = 3
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "SKILL TREE : Upgrades for 500$"
 align = 1
 
 [node name="Row0" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 299.0
+margin_top = 184.0
 margin_right = 644.0
-margin_bottom = 319.0
+margin_bottom = 237.0
+theme = ExtResource( 15 )
 alignment = 1
 
-[node name="Label" type="Label" parent="UpgradesPanel/SkillTreeContainer/Row0"]
-margin_left = 276.0
-margin_top = 3.0
-margin_right = 276.0
-margin_bottom = 17.0
-
 [node name="HITR0B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row0"]
-margin_left = 280.0
-margin_right = 319.0
-margin_bottom = 20.0
+margin_left = 262.0
+margin_right = 314.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 1000 to Slash damage"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Hit"
 
 [node name="DPSR0B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row0"]
-margin_left = 323.0
-margin_right = 368.0
-margin_bottom = 20.0
+margin_left = 318.0
+margin_right = 382.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 100 to DPS"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+DPS"
 
 [node name="Row1" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 323.0
+margin_top = 241.0
 margin_right = 644.0
-margin_bottom = 343.0
+margin_bottom = 294.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="RWDR1B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row1"]
-margin_left = 289.0
-margin_right = 355.0
-margin_bottom = 20.0
+margin_left = 270.0
+margin_right = 374.0
+margin_bottom = 53.0
 hint_tooltip = "Multiplies all money you get by 2"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Reward"
 
 [node name="Row2" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 347.0
+margin_top = 298.0
 margin_right = 644.0
-margin_bottom = 367.0
+margin_bottom = 351.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="HITR2B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
-margin_left = 243.0
-margin_right = 282.0
-margin_bottom = 20.0
+margin_left = 208.0
+margin_right = 260.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 1000 to Slash damage"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Hit"
 
 [node name="DPSR2B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
-margin_left = 286.0
-margin_right = 331.0
-margin_bottom = 20.0
+margin_left = 264.0
+margin_right = 328.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 100 to DPS"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+DPS"
 
 [node name="RWDR2B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row2"]
-margin_left = 335.0
-margin_right = 401.0
-margin_bottom = 20.0
+margin_left = 332.0
+margin_right = 436.0
+margin_bottom = 53.0
 hint_tooltip = "Multiplies all money you get by 2"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Reward"
 
 [node name="Row3" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 371.0
+margin_top = 355.0
 margin_right = 644.0
-margin_bottom = 391.0
+margin_bottom = 408.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="DPSR3B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row3"]
-margin_left = 256.0
-margin_right = 301.0
-margin_bottom = 20.0
+margin_left = 224.0
+margin_right = 288.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 100 to DPS"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+DPS"
 
 [node name="MTPR3B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row3"]
-margin_left = 305.0
-margin_right = 387.0
-margin_bottom = 20.0
+margin_left = 292.0
+margin_right = 419.0
+margin_bottom = 53.0
 hint_tooltip = "Multiplies DPS by 2 (including modifiers)"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Multiplier"
 
 [node name="Row4" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 395.0
+margin_top = 412.0
 margin_right = 644.0
-margin_bottom = 415.0
+margin_bottom = 465.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="DPSR4B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
-margin_left = 225.0
-margin_right = 270.0
-margin_bottom = 20.0
+margin_left = 180.0
+margin_right = 240.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 100 to DPS"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Dps"
 
 [node name="PWRR4B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
-margin_left = 274.0
-margin_right = 333.0
-margin_bottom = 20.0
+margin_left = 244.0
+margin_right = 332.0
+margin_bottom = 53.0
 hint_tooltip = "INSTANTLY adds 2 to power"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Power"
 
 [node name="MTPR4B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row4"]
-margin_left = 337.0
-margin_right = 419.0
-margin_bottom = 20.0
+margin_left = 336.0
+margin_right = 463.0
+margin_bottom = 53.0
 hint_tooltip = "Multiplies DPS by 2 (including modifiers)"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Multiplier"
 
 [node name="Row5" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 419.0
+margin_top = 469.0
 margin_right = 644.0
-margin_bottom = 439.0
+margin_bottom = 522.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="DPSR5B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
-margin_left = 225.0
-margin_right = 270.0
-margin_bottom = 20.0
+margin_left = 180.0
+margin_right = 240.0
+margin_bottom = 53.0
 hint_tooltip = "Adds 100 to DPS"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Dps"
 
 [node name="PWRR5B1" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
-margin_left = 274.0
-margin_right = 333.0
-margin_bottom = 20.0
+margin_left = 244.0
+margin_right = 332.0
+margin_bottom = 53.0
 hint_tooltip = "INSTANTLY adds 2 to power"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Power"
 
 [node name="MTPR5B2" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row5"]
-margin_left = 337.0
-margin_right = 419.0
-margin_bottom = 20.0
+margin_left = 336.0
+margin_right = 463.0
+margin_bottom = 53.0
 hint_tooltip = "Multiplies DPS by 2 (including modifiers)"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Multiplier"
 
 [node name="Row6" type="HBoxContainer" parent="UpgradesPanel/SkillTreeContainer"]
-margin_top = 443.0
+margin_top = 526.0
 margin_right = 644.0
-margin_bottom = 463.0
+margin_bottom = 579.0
+theme = ExtResource( 15 )
 alignment = 1
 
 [node name="PWRR6B0" type="Button" parent="UpgradesPanel/SkillTreeContainer/Row6"]
-margin_left = 292.0
-margin_right = 351.0
-margin_bottom = 20.0
+margin_left = 278.0
+margin_right = 366.0
+margin_bottom = 53.0
 hint_tooltip = "INSTANTLY adds 2 to power"
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "+Power"
 
 [node name="Down" type="Button" parent="UpgradesPanel"]
@@ -311,17 +348,30 @@ margin_top = -48.259
 margin_right = 22.8762
 margin_bottom = -8.25897
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "DWN"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="mainPanel" type="Control" parent="."]
-margin_left = -645.455
-margin_top = -354.748
-margin_right = 634.545
-margin_bottom = 365.252
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
 mouse_filter = 1
+theme = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="mainPanel"]
+modulate = Color( 0.505882, 0.505882, 0.505882, 1 )
+margin_right = 1280.0
+margin_bottom = 720.0
+theme = ExtResource( 15 )
+texture = ExtResource( 13 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -336,6 +386,7 @@ margin_top = -198.112
 margin_right = 100.0
 margin_bottom = -74.1123
 mouse_filter = 1
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 3 )
 text = "SLASH"
 __meta__ = {
@@ -350,6 +401,7 @@ margin_left = -300.0
 margin_top = 25.0
 margin_right = -25.0
 margin_bottom = -25.0
+theme = ExtResource( 15 )
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -357,9 +409,10 @@ __meta__ = {
 
 [node name="BuyButton1" type="Button" parent="mainPanel/buyContainer"]
 margin_right = 275.0
-margin_bottom = 47.0
+margin_bottom = 45.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "button1"
 __meta__ = {
@@ -367,47 +420,52 @@ __meta__ = {
 }
 
 [node name="BuyButton2" type="Button" parent="mainPanel/buyContainer"]
-margin_top = 51.0
+margin_top = 49.0
 margin_right = 275.0
-margin_bottom = 98.0
+margin_bottom = 94.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "button2"
 
 [node name="BuyButton3" type="Button" parent="mainPanel/buyContainer"]
-margin_top = 102.0
+margin_top = 98.0
 margin_right = 275.0
-margin_bottom = 149.0
+margin_bottom = 143.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "button3"
 
 [node name="BuyButton4" type="Button" parent="mainPanel/buyContainer"]
-margin_top = 153.0
+margin_top = 147.0
 margin_right = 275.0
-margin_bottom = 200.0
+margin_bottom = 192.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "button4"
 
 [node name="Reroll" type="Button" parent="mainPanel/buyContainer"]
-margin_top = 204.0
+margin_top = 196.0
 margin_right = 275.0
-margin_bottom = 251.0
+margin_bottom = 241.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "25$ : Reroll"
 
 [node name="LevelUp" type="Button" parent="mainPanel/buyContainer"]
-margin_top = 255.0
+margin_top = 245.0
 margin_right = 275.0
-margin_bottom = 302.0
+margin_bottom = 290.0
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 custom_fonts/font = SubResource( 2 )
 text = "50$ : Level Up"
 __meta__ = {
@@ -424,6 +482,7 @@ margin_bottom = 59.0
 hint_tooltip = "The multiplier selector"
 mouse_filter = 1
 mouse_default_cursor_shape = 2
+theme = ExtResource( 15 )
 text = "x1"
 items = [ "x1", null, false, 1, null, "x5", null, false, 5, null, "x25", null, false, 25, null, "x100", null, false, 100, null ]
 selected = 0
@@ -444,6 +503,7 @@ margin_top = 4.94975
 margin_right = 19.6465
 margin_bottom = 44.9498
 mouse_filter = 1
+theme = ExtResource( 15 )
 text = "UP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -455,7 +515,18 @@ margin_top = -356.636
 margin_right = 1920.0
 margin_bottom = 363.364
 mouse_filter = 1
+theme = ExtResource( 15 )
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="SavePannel"]
+margin_right = 1280.0
+margin_bottom = 720.0
+theme = ExtResource( 15 )
+texture = ExtResource( 14 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -469,6 +540,7 @@ margin_left = -100.0
 margin_top = -160.0
 margin_right = 100.0
 margin_bottom = -60.0
+theme = ExtResource( 15 )
 custom_fonts/font = ExtResource( 1 )
 text = "Exit"
 __meta__ = {
@@ -484,6 +556,7 @@ margin_left = -100.63
 margin_top = -50.0
 margin_right = 100.0
 margin_bottom = 50.0
+theme = ExtResource( 15 )
 custom_fonts/font = ExtResource( 1 )
 text = "Save"
 __meta__ = {
@@ -499,6 +572,7 @@ margin_left = -100.0
 margin_top = 60.0
 margin_right = 100.0
 margin_bottom = 160.0
+theme = ExtResource( 15 )
 custom_fonts/font = ExtResource( 1 )
 text = "Return"
 __meta__ = {

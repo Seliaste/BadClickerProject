@@ -15,6 +15,7 @@ var timePlayed = 0
 var newpowr = 1
 var currpowr = 1
 var killed = 0
+var skills = []
 const MAX_DIGITS: int = 10
 var newLevelCost: int = 50
 onready var tooltip = get_node("/root/Node2D/CanvasLayer/Tooltip")
@@ -32,7 +33,8 @@ func save():
 		"cpsMultiplier" : cpsMultiplier,
 		"level" : level,
 		"timePlayed" : timePlayed,
-		"newLevelCost" : newLevelCost
+		"newLevelCost" : newLevelCost,
+		"skills" : skills
 	}
 	return save_dict
 

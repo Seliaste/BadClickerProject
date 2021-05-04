@@ -20,7 +20,6 @@ func spawnBoss():
 	maxlife = ceil(10 * rng.randf_range(0.9,1.1) * (pow(player.level,2)) * currmonsterNum)
 	life = maxlife
 	refreshLife()
-	print(currmonsterNum)
 
 func damage(damageAmount: float, showdmg = false):
 	if damageAmount > 0 and isSpawned == true:

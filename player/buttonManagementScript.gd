@@ -44,4 +44,3 @@ func Reroll():
 		var node = get_node("/root/Node2D/mainPanel/buyContainer/BuyButton"+str(i+1))
 		node.set_text(str(cost)+"$ : +"+str(val)+str(messages[type]))
 		node.add_color_override("font_color", rarityColors[rarity])
-		print(rarityColors[rarity])

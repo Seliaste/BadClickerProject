@@ -32,7 +32,6 @@ func _on_Button3_button_down():
 
 
 func _on_Button_ready():
-	print(get_tree().get_root())
 	if not File.new().file_exists("user://savegame.save"):
 		var buttonToHide = get_tree().get_root().get_node("Node2D/menuAnchor/Button") 
 		buttonToHide.set_visible(false)

@@ -25,7 +25,7 @@ func _ready():
 			
 	var camera = get_node("Player/Camera2D")
 	camera.current=true
-	camera.set_position(Vector2(0	,0))
+	camera.set_position(Vector2(640	,360))
 	save_game.close() 
 	
 
